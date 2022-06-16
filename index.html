@@ -144,7 +144,12 @@
         });
         Click.forEach(function (x) {
           x.addEventListener("click", function (e) {
-            
+            // The preventDefault() method cancels the event if it is cancelable,
+            //  meaning that the default action that belongs to the
+            //  event will not occur. For example, this can be  useful when:
+            //   Clicking on a "Submit" button, prevent it from submitting
+            //  a form. Clicking on a link, prevent the link from following the URL.
+            // e.preventDefault();
             alert("Awesome! You have Completed your task");
             // stopImmediatePropagation() will allow you to only run the event
             // on the triggerd Element
