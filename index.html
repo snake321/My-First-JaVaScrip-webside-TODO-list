@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        flex-direction: column;
+        width: 100%;
+        border: 5px solid yellow;
+      }
+      .sub {
+        padding: 5rem 10rem;
+        border: 5px solid yellow;
+        border-radius: 2rem;
+      }
+      h1,
+      h2 {
+        font-size: 3rem;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        text-align: center;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+      }
+      h2 {
+        padding-top: 2rem;
+      }
+      li {
+      }
+
+      #add_items,
+      .btn,
+      .btn1 {
+        font-size: 2rem;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .btn,
+      .btn1 {
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+      .container_list {
+        padding-top: 2rem;
+      }
+      .container_list li {
+        list-style-type: none;
+        font-size: 2rem;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        background-color: #47126b;
+        padding: 2rem 3rem;
+        color: #fffcf7;
+        border-radius: 5rem;
+        overflow-x: hidden;
+        margin-top: 1rem;
+
+        /* display:block; */
+        /* grid-template-columns:1fr 1fr ; */
+        /* width: 100%;  */
+      }
+      li .fa-solid {
+        /* font-size: 5rem; */
+        border: none;
+        border-radius: 5rem;
+        padding: 1rem;
+        cursor: pointer;
+      }
+      li .fa-check {
+        margin-left: 2rem;
+      }
+      li .fa-check:hover {
+        background-color: green;
+      }
+      li .fa-check:active {
+        background-color: green;
+      }
+      li .fa-xmark:hover {
+        background-color: red;
+      }
+      li .fa-xmark:active li {
+        display: none;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <div class="sub">
+        <h1>to-do list</h1>
+        <form id="todoapp" onsubmit="Todolist();return false">
+          <label for="to-do list">
+            <input type="text" name="add_items" id="add_items" />
+
+            <input type="submit" name="submit" class="btn" />
+            <button class="btn1">Clear list</button>
+          </label>
+        </form>
+      </div>
+      <h2>Today Task</h2>
+      <ul class="container_list"></ul>
+    </main>
+    <script>
+      const Todolist = () => {
+        let list;
+        list = document.getElementById("add_items").value;
+        const containerlist = document.querySelector(".container_list");
+
+        const li = document.createElement("li");
+        li.textContent = list;
+        containerlist.appendChild(li);
+
+        li.innerHTML = ` ${list} <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i>`;
+        let ii = document.querySelector(".fa-xmark");
+        const btn1 = document.querySelector(".btn1");
+        btn1.addEventListener("click", () => {
+          li.remove();
+        });
+        containerlist.addEventListener("click", function (e) {
+          // let target = event.target;
+          // li.this.innerHTML = li.style.display="none";
+          this.remove(e.target);
+        });
+
+
+      };
+    </script>
+  </body>
+</html>
