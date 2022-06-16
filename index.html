@@ -37,9 +37,10 @@
       h2 {
         padding-top: 2rem;
       }
-      li {
-      }
 
+      #add_items {
+        padding: 0.5rem 1rem;
+      }
       #add_items,
       .btn,
       .btn1 {
@@ -59,18 +60,13 @@
         font-size: 2rem;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
         background-color: #47126b;
-        padding: 2rem 3rem;
+        padding: 1rem 3rem;
         color: #fffcf7;
         border-radius: 5rem;
         overflow-x: hidden;
         margin-top: 1rem;
-
-        /* display:block; */
-        /* grid-template-columns:1fr 1fr ; */
-        /* width: 100%;  */
       }
       li .fa-solid {
-        /* font-size: 5rem; */
         border: none;
         border-radius: 5rem;
         padding: 1rem;
@@ -106,7 +102,12 @@
         <h1>to-do list</h1>
         <form id="todoapp" onsubmit="Todolist();return false">
           <label for="to-do list">
-            <input type="text" name="add_items" id="add_items" />
+            <input
+              type="text"
+              name="add_items"
+              placeholder="Add items"
+              id="add_items"
+            />
 
             <input type="submit" name="submit" class="btn" />
             <button class="btn1">Clear list</button>
@@ -127,18 +128,30 @@
         containerlist.appendChild(li);
 
         li.innerHTML = ` ${list} <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i>`;
-        let ii = document.querySelector(".fa-xmark");
         const btn1 = document.querySelector(".btn1");
         btn1.addEventListener("click", () => {
           li.remove();
         });
-        containerlist.addEventListener("click", function (e) {
-          // let target = event.target;
-          // li.this.innerHTML = li.style.display="none";
-          this.remove(e.target);
+
+        let Cross = document.querySelectorAll(".fa-xmark");
+        let Click = document.querySelectorAll(".fa-check");
+
+        Cross.forEach(function (i) {
+          i.addEventListener("click", function (e) {
+            // so This is how  we delete parent node by clicking on button
+            this.parentElement.remove(e.target);
+          });
         });
-
-
+        Click.forEach(function (x) {
+          x.addEventListener("click", function (e) {
+            
+            alert("Awesome! You have Completed your task");
+            // stopImmediatePropagation() will allow you to only run the event
+            // on the triggerd Element
+            e.stopImmediatePropagation();
+            e.innerHTML = li.style.background = "Green";
+          });
+        });
       };
     </script>
   </body>
