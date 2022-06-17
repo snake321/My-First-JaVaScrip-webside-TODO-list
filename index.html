@@ -104,9 +104,8 @@
           <label for="to-do list">
             <input
               type="text"
-              name="add_items"
-              placeholder="Add items"
-              id="add_items"
+              name="add_items" required  id="add_items"  placeholder="Add items"
+            
             />
 
             <input type="submit" name="submit" class="btn" />
@@ -119,15 +118,18 @@
     </main>
     <script>
       const Todolist = () => {
+        // so to get num step by step you just need to write this var 
+        // then specy this var 
+        // taskCount += 1; then you will get num 1 2 3 4 5 
+        let taskCount = 0;
         let list;
         list = document.getElementById("add_items").value;
         const containerlist = document.querySelector(".container_list");
-
         const li = document.createElement("li");
         li.textContent = list;
         containerlist.appendChild(li);
-
-        li.innerHTML = ` ${list} <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i>`;
+        taskCount += 1;
+        li.innerHTML = `${taskCount} :  ${list} <i class="fa-solid fa-check"></i> <i class="fa-solid fa-xmark"></i>`;
         const btn1 = document.querySelector(".btn1");
         btn1.addEventListener("click", () => {
           li.remove();
